@@ -22,8 +22,8 @@ public class Ghost extends GameObject {
 	}
 
 	public void movimentaGhost() {
-		posicaoXGhost = (int) (getPosicaoX() * Math.random());
-		posicaoYGhost = (int) (getPosicaoY() * Math.random());
+//		posicaoXGhost = (int) (getPosicaoX() * Math.random());
+//		posicaoYGhost = (int) (getPosicaoY() * Math.random());
 		direcaoGhost = (int) (direcaoGhost * Math.random());
 
 	}

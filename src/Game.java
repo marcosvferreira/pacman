@@ -3,18 +3,13 @@ public class Game {
 	public static void main(String[] args) {
 		
 		
-		Player player = new Player();
-		player.setPosicaoX(20);
-		player.setPosicaoY(15);
-		player.setDirecao(90);
-		player.setQtdeVidas(5);
+		Player player = new Player(50, 50, 180);
+		
 		player.novaPosicao(0, 0, 0);
-		System.out.println("Posição X: " + player.getPosicaoX() + "Posição Y: " + player.getPosicaoY() + "Vidas: " + player.getQtdeVidas());
+		System.out.println("NOVA POSIÇÃO  Posição X: " + player.getPosicaoX()  + "Posição Y: " +  player.getPosicaoY() + "Vidas: " + player.getQtdeVidas());
 		
 		Ghost blinky = new Ghost();
-		blinky.setPosicaoXGhost(0);
-		blinky.setPosicaoYGhost(0);
-		blinky.setDirecaoGhost(0);
+		blinky.movimentaGhost();
 		System.out.println("Blinky X: " + blinky.getPosicaoXGhost() + "Blinky Y: " + blinky.getPosicaoYGhost() + "Blinky Direção: " + blinky.getDirecaoGhost());
 		
 		
