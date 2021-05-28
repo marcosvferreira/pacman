@@ -1,31 +1,61 @@
 
 public class Ghost extends GameObject {
 	private int direcaoGhost;
-	private int posicaoYGhost;
-	private int posicaoXGhost;
 
 	public Ghost() {
 	}
 
 	public Ghost(int posicaoX, int posicaoY, int direcao) {
-		this.posicaoXGhost = posicaoX;
-		this.posicaoYGhost = posicaoY;
-		this.direcaoGhost = direcao;
-
+		super(posicaoX, posicaoY);
+		direcaoGhost = direcao;
 	}
 
-	public boolean podeSeMover(int posicaoX, int posicaoY, int direcao) {
-		if (posicaoXGhost >= 0 && posicaoXGhost < getTelaX() && posicaoYGhost >= 0 && posicaoYGhost < getTelaY()) {
+	public boolean podeSeMover() {
+		int x = novoX();
+		int y = novoY();
+		if (x >= 0 && x <= getTelaX() && y >= 0 && y <= getTelaY()) {
 			return true;
 		}
 		return false;
+
+	}
+
+	private int novoX() {
+		int novoXGhost = this.getPosicaoX();
+
+		if (direcaoGhost <= 90 && direcaoGhost >= 0) {
+			novoXGhost += 10;
+		}
+		if (direcaoGhost <= 270 && direcaoGhost > 180) {
+			novoXGhost -= 10;
+		}
+		return novoXGhost;
+	}
+
+	private int novoY() {
+		int novoYGhost = this.getPosicaoY();
+
+		if (direcaoGhost <= 180 && direcaoGhost > 90) {
+			novoYGhost -= 10;
+		}
+
+		if (direcaoGhost <= 360 && direcaoGhost > 270) {
+			novoYGhost += 10;
+		}
+		return novoYGhost;
 	}
 
 	public void movimentaGhost() {
-//		posicaoXGhost = (int) (getPosicaoX() * Math.random());
-//		posicaoYGhost = (int) (getPosicaoY() * Math.random());
-		direcaoGhost = (int) (direcaoGhost * Math.random());
 
+		int direcaoAleatoria = (int) (360 * Math.random());
+		this.setDirecaoGhost(direcaoAleatoria);
+
+		if (podeSeMover()) {
+
+			this.setPosicaoX(novoX());
+
+			this.setPosicaoY(novoY());
+		}
 	}
 
 	public int getDirecaoGhost() {
@@ -38,27 +68,4 @@ public class Ghost extends GameObject {
 		}
 		this.direcaoGhost = direcaoGhost;
 	}
-
-	public int getPosicaoYGhost() {
-		return posicaoYGhost;
-	}
-
-	public void setPosicaoYGhost(int posicaoYGhost) {
-		if (posicaoYGhost < 0) {
-			System.out.println("Posição inválida.");
-		}
-		this.posicaoYGhost = posicaoYGhost;
-	}
-
-	public int getPosicaoXGhost() {
-		return posicaoXGhost;
-	}
-
-	public void setPosicaoXGhost(int posicaoXGhost) {
-		if (posicaoXGhost < 0) {
-			System.out.println("Posição inválida.");
-		}
-		this.posicaoXGhost = posicaoXGhost;
-	}
-
 }

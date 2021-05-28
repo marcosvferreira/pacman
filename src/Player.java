@@ -27,40 +27,72 @@ public class Player extends GameObject {
 		}
 	}
 
-	public boolean podeSeMover(int getPosicaoX, int getPosicaoY, double direcao) {
-		if (getPosicaoX >= 0 && getPosicaoX < getTelaX() && getPosicaoY >= 0 && getPosicaoY < getTelaY()) {
+	public boolean podeSeMover() {
+		int x = novoX();
+		int y = novoY();
+		if (x >= 0 && x <= getTelaX() && y >= 0 && y <= getTelaY()) {
 			return true;
 		}
 		return false;
-	}
-
-	public void novaPosicao() {
-		if (direcao == 0 || direcao < 90) {
-			int novaPosicaoX = this.getPosicaoX() + 10;
-			this.setPosicaoX(novaPosicaoX);
-		}
-
-		if (direcao == 90 || direcao < 180) {
-			int novaPosicaoY = this.getPosicaoY() + 10;
-			this.setPosicaoY(novaPosicaoY);
-		}
-
-		if (direcao == 180 || direcao < 270) {
-			int novaPosicaoY = this.getPosicaoX() - 10;
-			this.setPosicaoY(novaPosicaoY);
-		}
-
-		if (direcao == 270 || direcao < 360) {
-			int novaPosicaoY = this.getPosicaoY() - 10;
-			this.setPosicaoY(novaPosicaoY);
-		}
-
-		if (direcao == 360 || direcao > 360) {
-			int novaPosicaoX = this.getPosicaoX() + 10;
-			this.setPosicaoX(novaPosicaoX);
-		}
 
 	}
+
+	private int novoX() {
+		int novoXPlayer = this.getPosicaoX();
+
+		if (direcao < 90 && direcao >= 0) {
+			novoXPlayer += 10;
+		}
+		if (direcao < 270 && direcao >= 180) {
+			novoXPlayer -= 10;
+		}
+		return novoXPlayer;
+	}
+
+	private int novoY() {
+		int novoYPlayer = this.getPosicaoY();
+
+		if (direcao < 180 && direcao >= 90) {
+			novoYPlayer -= 10;
+		}
+		if (direcao < 360 && direcao >= 270) {
+			novoYPlayer += 10;
+		}
+		return novoYPlayer;
+	}
+
+	public void movimentaPlayer() {
+
+		if (podeSeMover()) {
+			this.setPosicaoX(novoX());
+			this.setPosicaoY(novoY());
+		}
+	}
+//
+//	public void novaPosicao() {
+//		if (podeSeMover()) {
+//
+//			if (direcao == 0) {
+//				int novaPosicaoX = this.getPosicaoX() + 10;
+//				this.setPosicaoX(novaPosicaoX);
+//			}
+//
+//			if (direcao == 90) {
+//				int novaPosicaoY = this.getPosicaoY() - 10;
+//				this.setPosicaoY(novaPosicaoY);
+//			}
+//
+//			if (direcao == 180) {
+//				int novaPosicaoX = this.getPosicaoX() - 10;
+//				this.setPosicaoX(novaPosicaoX);
+//			}
+//
+//			if (direcao == 270) {
+//				int novaPosicaoY = this.getPosicaoY() + 10;
+//				this.setPosicaoY(novaPosicaoY);
+//			}
+//		}
+//	}
 
 	public int getDirecao() {
 		return direcao;
