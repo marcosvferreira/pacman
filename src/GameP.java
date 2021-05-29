@@ -18,7 +18,7 @@ public class GameP extends JFrame implements KeyListener {
 	private Ghost ghost3 = new Ghost(0, 500, 0);
 	private Ghost ghost4 = new Ghost(500, 500, 0);
 	private Bomb bomb = new Bomb(100, 200, 20);
-	private Booster booster = new Booster(100, 100, 4);
+	private Booster booster = new Booster(100, 100, 5);
 
 	private JLabel imgPlayer = new JLabel(new ImageIcon("src/images/pacman.png"));
 	private JLabel imgGhost1 = new JLabel(new ImageIcon("src/images/ghost.png"));
@@ -40,7 +40,7 @@ public class GameP extends JFrame implements KeyListener {
 		setLayout(null);
 		player.setTelaX(SCREENSIZE);
 		player.setTelaY(SCREENSIZE);
-		player.setQtdeVidas(15);
+		player.setQtdeVidas(10);
 
 		ghost1.setTelaX(SCREENSIZE);
 		ghost1.setTelaY(SCREENSIZE);
@@ -59,7 +59,7 @@ public class GameP extends JFrame implements KeyListener {
 		ghost4.setDirecaoGhost(SCREENSIZE);
 
 		booster.setTelaX(SCREENSIZE);
-		booster.setPosicaoY(SCREENSIZE);
+		booster.setTelaY(SCREENSIZE);
 		booster.setDuracaoBooster(15);
 		booster.setVisivel(true);
 
@@ -98,8 +98,14 @@ public class GameP extends JFrame implements KeyListener {
 		if (bomb.isVisivel() == false) {
 			this.remove(imgBomb);
 		}
+		if (bomb.isVisivel() == true) {
+			this.add(imgBomb);
+		}
 		if (booster.isVisivel() == false) {
 			this.remove(imgBooster);
+		}
+		if (booster.isVisivel() == true) {
+			this.add(imgBooster);
 		}
 		SwingUtilities.updateComponentTreeUI(this);
 
@@ -114,15 +120,11 @@ public class GameP extends JFrame implements KeyListener {
 	}
 
 	private void run() {
-
 		int desligarInvencibilidade = 0;
 		
 		while (player.getQtdeVidas() > 0) {
 			turno++;
-			System.out.println("Turno: "+ turno);
-			System.out.println("Invencibilidade:" + desligarInvencibilidade);
 			
-			// coloque aqui os métodos de movimentação e colisão
 			player.movimentaPlayer();
 			ghost1.movimentaGhost();
 			ghost2.movimentaGhost();
@@ -137,10 +139,16 @@ public class GameP extends JFrame implements KeyListener {
 				player.setInvencivel(true);
 				System.out.println("Está invencível!");
 			}
+			
 			if (desligarInvencibilidade == turno) {
 				player.setInvencivel(false);
+				double aleatorio = (Math.random()* booster.getTelaX());
+				booster.setPosicaoX((int) (aleatorio / 10) * 10);
+				booster.setPosicaoY((int) (aleatorio / 10) * 10);
+				booster.setVisivel(true);
 				System.out.println("Não está mais invencível");
 			}
+			
 
 			if (player.getPosicaoX() == bomb.getPosicaoX() && player.getPosicaoY() == bomb.getPosicaoY()) {
 				int perdeuVida = player.getQtdeVidas() - 1;
@@ -148,6 +156,8 @@ public class GameP extends JFrame implements KeyListener {
 				bomb.setVisivel(false);
 				System.out.println("Perdeu uma vida!");
 			}
+			
+			
 			if (player.getPosicaoX() == ghost1.getPosicaoX() && player.getPosicaoY() == ghost1.getPosicaoY()) {
 				int perdeuVida = player.getQtdeVidas() - 1;
 				player.setQtdeVidas(perdeuVida);
@@ -177,7 +187,7 @@ public class GameP extends JFrame implements KeyListener {
 			render();
 
 		}
-		JOptionPane.showMessageDialog(this, turno);
+		JOptionPane.showMessageDialog(this,"Parabéns! Você conseguiu sobreviver por " + turno + " turnos");
 
 	}
 

@@ -13,6 +13,7 @@ public class Booster extends Item {
 	public void dropaBooster() {
 		this.setPosicaoX(getPosicaoX());
 		this.setPosicaoY(getPosicaoY());
+		this.setDuracaoBooster(duracaoBooster);
 	}
 
 	public int getDuracaoBooster() {

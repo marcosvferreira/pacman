@@ -38,7 +38,6 @@ public class Ghost extends GameObject {
 		if (direcaoGhost <= 180 && direcaoGhost > 90) {
 			novoYGhost -= 10;
 		}
-
 		if (direcaoGhost <= 360 && direcaoGhost > 270) {
 			novoYGhost += 10;
 		}
@@ -51,9 +50,7 @@ public class Ghost extends GameObject {
 		this.setDirecaoGhost(direcaoAleatoria);
 
 		if (podeSeMover()) {
-
 			this.setPosicaoX(novoX());
-
 			this.setPosicaoY(novoY());
 		}
 	}

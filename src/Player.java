@@ -34,7 +34,6 @@ public class Player extends GameObject {
 			return true;
 		}
 		return false;
-
 	}
 
 	private int novoX() {
@@ -68,31 +67,6 @@ public class Player extends GameObject {
 			this.setPosicaoY(novoY());
 		}
 	}
-//
-//	public void novaPosicao() {
-//		if (podeSeMover()) {
-//
-//			if (direcao == 0) {
-//				int novaPosicaoX = this.getPosicaoX() + 10;
-//				this.setPosicaoX(novaPosicaoX);
-//			}
-//
-//			if (direcao == 90) {
-//				int novaPosicaoY = this.getPosicaoY() - 10;
-//				this.setPosicaoY(novaPosicaoY);
-//			}
-//
-//			if (direcao == 180) {
-//				int novaPosicaoX = this.getPosicaoX() - 10;
-//				this.setPosicaoX(novaPosicaoX);
-//			}
-//
-//			if (direcao == 270) {
-//				int novaPosicaoY = this.getPosicaoY() + 10;
-//				this.setPosicaoY(novaPosicaoY);
-//			}
-//		}
-//	}
 
 	public int getDirecao() {
 		return direcao;
