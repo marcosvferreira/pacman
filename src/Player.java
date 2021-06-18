@@ -1,4 +1,3 @@
-
 public class Player extends GameObject {
 	private int direcao;
 	private int qtdeVidas;
