@@ -10,11 +10,11 @@ public class Player extends GameObject {
 	public Player(int direcao, int qtdeVidas, boolean invencivel) {
 		super();
 		if (direcao < 0 || direcao > 360) {
-			System.out.println("DireÁ„o inv·lida.");
+			System.out.println("Dire√ß√£o inv√°lida.");
 		}
 		this.direcao = direcao;
 		if (qtdeVidas <= 0) {
-			System.out.println("Quantidade de vidas inv·lida");
+			System.out.println("Quantidade de vidas inv√°lida");
 		}
 		this.qtdeVidas = qtdeVidas;
 		this.invencivel = invencivel;
@@ -22,7 +22,7 @@ public class Player extends GameObject {
 
 	public Player(int getPosicaoX, int getPosicaoY, int direcao) {
 		if (direcao < 0 || direcao > 360) {
-			System.out.println("DireÁ„o inv·lida.");
+			System.out.println("Dire√ß√£o inv√°lida.");
 			this.direcao = direcao;
 		}
 	}
